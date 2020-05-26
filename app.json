@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/person/person",
+    "pages/addDream/addDream",
+    "pages/dreamDetail/dreamDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-tabbar": "pages/dist/tabbar/index",
+    "van-tabbar-item": "pages/dist/tabbar-item/index",
+    "cu-custom": "/colorui/components/cu-custom",
+    "van-action-sheet": "pages/dist/action-sheet/index",
+    "van-toast": "pages/dist/toast/index",
+    "van-icon": "pages/dist/icon/index"
+  }
+}

@@ -1,0 +1,96 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{false}}">
+	<view slot="content">筑梦</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+<view class="cu-list menu margin-top cu-form-group">
+  <view class="cu-item arrow" bindtap="onOpen">
+      <view class="content" style="margin-left: -1.2rem;">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-black">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-{{tagColor}} light">{{tagName}}</view>
+      </view>
+    </view>
+  </view>
+	<view class="cu-form-group">
+		<view class="title">标题</view>
+		<input name="title" placeholder="给自己的梦境想个吸人眼球的标题吧！"></input>
+	</view>
+	<view class="cu-form-group align-start">
+		<view class="title">梦境内容</view>
+		<textarea name="content" style="height:10rem" maxlength="200" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="记录自己的梦境内容..."></textarea>
+	</view>
+  <view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+  <view class="padding flex flex-direction" style="margin-top:10rpx">
+   <button formType="submit" class="cu-btn round line-purple" style="width:15rem">记录梦境</button>
+  </view>
+ </form> 
+ <van-action-sheet
+  show="{{ show }}"
+  actions="{{ actions }}"
+  bind:close="onClose"
+  bind:select="onSelect"
+/>
+ <van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item info="3">
+    <image
+      slot="icon"
+      src="{{ icon.normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    梦境匣子
+  </van-tabbar-item>
+  <van-tabbar-item> <image
+      slot="icon"
+      src="{{ icon.add_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.add_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />筑梦</van-tabbar-item>
+  <van-tabbar-item>
+   <image
+      slot="icon"
+      src="{{ icon.person_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.person_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />我的梦境</van-tabbar-item>
+</van-tabbar>

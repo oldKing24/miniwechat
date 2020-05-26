@@ -1,0 +1,86 @@
+
+<cu-custom bgColor="bg-gradual-pink" isBack="{{false}}">
+	<!-- <view slot="backText">返回</view> -->
+	<view slot="content">梦境工厂</view>
+</cu-custom>
+<view class="box" style="position: fixed;z-index: 1024;width: 100%;">
+ <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索梦境" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-pink shadow-blur round" style="width: 5rem;height: 2rem;">搜索</button>
+    </view>
+  </view>
+</view>
+<scroll-view scroll-y class="scrollPage" style="padding-bottom: 3rem;padding-top:3rem">
+<view class="cu-card case {{isCard?'no-card':''}}" wx:for="{{dreamList}}">
+  <view class="cu-item shadow">
+    <view class="image">
+      <image src="/images/dream.jpg" mode="widthFix"></image>
+      <view class="cu-tag bg-{{dreamList[index].tagColor}}">{{dreamList[index].tagName}}</view>
+      <view class="cu-bar bg-shadeBottom" bindtap="gotoDetail" data-id="{{dreamList[index].id}}">
+        <text class="text-cut">{{dreamList[index].content}}</text>
+      </view>
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{dreamList[index].avatarUrl}});"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">{{dreamList[index].nickName}}</view>
+          <view class="text-gray text-sm flex justify-between">{{dreamList[index].createTimeDesc}}
+            <view class="text-gray text-sm">
+              <text class="{{dreamList[index].shoucangStatus?'cuIcon-favorfill':'cuIcon-favor'}} margin-lr-xs text-orange" bindtap="shareDream" data-curIndex="{{index}}" data-id="{{dreamList[index].id}}" data-shoucangStatus="{{dreamList[index].shoucangStatus}}"></text>{{dreamList[index].shareNum}}
+              <text class="{{dreamList[index].likeStatus?'cuIcon-appreciatefill':'cuIcon-appreciate'}} margin-lr-xs text-pink"></text> {{dreamList[index].likeNum}}
+              <text class="cuIcon-message margin-lr-xs"></text> {{dreamList[index].commentsNum}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view >
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item info="3">
+    <image
+      slot="icon"
+      src="{{ icon.normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    梦境匣子
+  </van-tabbar-item>
+  <van-tabbar-item> <image
+      slot="icon"
+      src="{{ icon.add_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.add_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />筑梦</van-tabbar-item>
+  <van-tabbar-item dot="{{isDot}}">
+   <image
+      slot="icon"
+      src="{{ icon.person_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.person_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />我的梦境</van-tabbar-item>
+</van-tabbar>

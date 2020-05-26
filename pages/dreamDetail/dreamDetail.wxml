@@ -1,0 +1,68 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText" bindtap="gotoIndex">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+<view class="cu-card dynamic no-card">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
+        <view class="content flex-sub">
+          <view>{{nickName}}</view>
+          <view class="text-gray text-sm flex justify-between">
+            {{createTimeDesc}}
+          </view>
+        </view>
+        <view class="cu-tag bg-{{tagColor}}">{{tagName}}</view>
+      </view>
+    </view>
+    <view class="text-content">
+      {{content}}
+    </view>
+    <view class="grid flex-sub padding-lr col-3 grid-square">
+      <view class="bg-img" style="background-image:url({{picPaths[index].picPath}});" wx:for="{{picPaths}}" wx:key="{{index}}">
+      </view>
+    </view>
+    <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-forwardfill margin-lr-xs" open-type='share'></text> {{shareNum}}
+      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{likeNum}}
+      <text class="cuIcon-messagefill margin-lr-xs" bindtap="openCommet"></text> {{commentsNum}}
+    </view>
+    <view class="cu-list menu-avatar comment solids-top">
+      <view class="cu-item"wx:for="{{commentList}}" >
+        <view class="cu-avatar round" style="background-image:url({{commentList[index].avatarUrl}});"></view>
+        <view class="content">
+          <view class="text-grey">{{commentList[index].commentorName}}</view>
+          <view class="text-gray text-content text-df">
+            {{commentList[index].commentContent}}
+          </view>
+          <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+            <view class="flex">
+              <view>凯尔：</view>
+              <view class="flex-sub">妹妹，你在帮他们给黑暗找借口吗?</view>
+            </view>
+          </view> -->
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">{{commentList[index].createTimeDesc}}</view>
+            <!-- <view>
+              <text class="cuIcon-appreciatefill text-red"></text>
+              <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="addComment">
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px;display:{{isComment?'':'none'}}">
+  <view class="action">
+    <text class="cuIcon-sound text-grey"></text>
+  </view>
+  <input class="solid-bottom" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="true" focus="{{isComment}}" maxlength="300" cursor-spacing="10" name="commentContent"></input>
+  <view class="action">
+    <text class="cuIcon-emojifill text-grey"></text>
+  </view>
+  <button formType="submit" class="cu-btn bg-green shadow"style="width: 5rem;height: 2rem;">发送</button>
+</view>
+</form>

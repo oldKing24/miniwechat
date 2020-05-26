@@ -1,0 +1,125 @@
+<scroll-view scroll-y class="scrollPage">
+  <cu-custom bgColor="bg-gradual-pink" isBack="{{false}}">
+    <view slot="content">我的梦境</view>
+  </cu-custom>
+  <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('/images/logo.gif');height: 414rpx;">
+  <view class="padding-xl text-white" style="padding-top: 5rem;">
+    <view class="padding-xs text-xl">
+      朝花夕拾
+    </view>
+    <view class="padding-xs">
+      Dawn Blossoms Plucked at Dusk.
+    </view>
+  </view>
+  <view class="padding" style="margin-top: -10rem;margin-left: 15rem;">
+  <button wx:if="{{!hasUserInfo && canIUse}}" class="cu-btn round bg-green" style="width:8rem" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <block wx:else>
+  <view class="cu-avatar round lg margin-left" style="background-image:url({{userInfo.avatarUrl}});">
+    <view class="cu-tag badge {{userInfo.gender==1?'cuIcon-female bg-blue':'cuIcon-male bg-pink'}}"></view>
+    <view class="padding-xs text-xl" style="margin-top: 6rem;">
+      {{userInfo.nickName}}
+    </view>
+  </view>
+    </block>
+  
+</view>
+</view>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-pink">100</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-likefill text-pink"></text> 点赞</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-green">100</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-commentfill text-green"></text> 评论</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-orange">100</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-fork text-orange"></text> 分享</view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">GitHub</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/about/about" hover-class="none">
+        <image src="/images/dreams.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">我的梦境</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-scan"></text>
+        <text class="text-grey">扫一扫</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="showQrcode">
+        <text class="cuIcon-appreciatefill text-red"></text>
+        <text class="text-grey">赞赏支持</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/test/list" hover-class="none">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">Bug测试</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item info="3">
+    <image
+      slot="icon"
+      src="{{ icon.normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    梦境匣子
+  </van-tabbar-item>
+  <van-tabbar-item> <image
+      slot="icon"
+      src="{{ icon.add_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.add_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />筑梦</van-tabbar-item>
+  <van-tabbar-item>
+   <image
+      slot="icon"
+      src="{{ icon.person_normal }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />
+    <image
+      slot="icon-active"
+      src="{{ icon.person_active }}"
+      mode="aspectFit"
+      style="width: 30px; height: 18px;"
+    />我的梦境</van-tabbar-item>
+</van-tabbar>
